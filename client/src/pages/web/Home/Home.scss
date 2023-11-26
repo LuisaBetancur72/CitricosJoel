@@ -1,0 +1,312 @@
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+    background-image: url("../../../assets/png/Fondo.png");
+
+  }
+  @media (max-width: 768px){
+    .home{
+      width: 100%;
+    }
+    .slider{
+      width: 50%;
+    }
+    .slideContainer{
+      width: 20%;
+    }
+}  
+
+  @keyframes spin {
+    0% {
+      transform:rotateX(0deg) rotateY(0deg);
+    }
+    100% {
+      transform:rotateX(360deg) rotateY(360deg);
+    }
+  }
+
+  .section-padding1 {  
+    height: 800px;
+    margin: 10px;
+    width: 1200px;
+
+  }
+  .section-padding2 {
+    margin: 10px;
+    width: 1200px;
+    height: 900px;
+  }
+  .section-padding3 {
+    
+    margin-top: 20%;
+    margin-right: 5%;
+    width: 1200px;
+    height: 900px;
+    
+  }
+  .slideContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+    width: 1160px;
+    height: 550px;
+    background-color: #d3a2b300;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .slider{
+    max-width: 1050px;
+    max-height: 500px;
+    font-weight: bold;
+    .img{
+      justify-content: center;
+      align-items: center;
+    }
+    
+  }
+  .slick-prev:before,.slick-next:before {
+    font-family: 'slick';
+    font-size: 25px;
+    line-height: 1;
+    opacity: .75;
+    color: orange;
+    -webkit-font-smoothing: antialiased;
+  }
+  .slick-slide {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    
+  
+    img {
+      max-width: 2100px;
+      height: 600px;
+      object-fit: contain;
+      object-position: center center;
+    }
+  }
+  .cardMedia-post{
+    object-fit: cover;
+    justify-content: center;
+    align-items: center;
+    display: block;   
+    max-width: 650px;
+    max-height: 350px;
+  }
+  .CardContent{
+    background-color:#024959;
+    color: white;
+    max-width: auto;
+    max-height: 123px;
+    
+  }
+  .card .button:hover {
+    background-color: #0056b3;
+    color: #fff; 
+    border: none; 
+    padding: 8px 16px; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 14px;
+    
+  }
+
+  .modal-slide {
+    position: fixed;
+    width: 10px;
+    height: 30px;
+    display: flex;
+    
+    .Box-slide {
+      position: absolute;
+      top: 30px;
+      left: 20%;    
+      background-color: #234c66;
+      padding: 10px;
+      max-width: 650px;
+      margin-left: 700px;
+      
+      img{
+        width: 450px;
+        height: 250px;
+      }
+
+    }
+  }
+  .section-title {
+    margin-left: 30%;
+    font-weight: bold;
+  
+    p {
+      text-align: center;
+      font-size: 24px;
+      margin: 20px;
+      border: 1px solid #024959; 
+      border-radius: 8px; 
+      background-color: #024959; 
+      padding: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+      max-width: 83%;
+    }
+  }
+  
+  .modal-service-info{
+    text-align: center;
+    font-weight: bold;
+  }
+  .button-fav-group{
+    background-color: #234c66;
+    display: flex;
+    justify-content: right;
+    align-content: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .card-punto-container{
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    margin-left: 30%;
+    
+    .card{
+      border: #0056b3;
+      width: 50%;
+      margin-left: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+  }
+  .cardMediaPunto{
+    
+    height: 50%; 
+    .img{
+      width: 50%;
+    }
+  }
+}
+.CardPunto{
+
+  align-items: center;
+  .title{
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .description{
+    font-size: 17px;
+    padding-top: 10px;
+    text-align: left;
+  }
+}
+.container2 {
+  margin: 40px; 
+  .video-section {
+    display: flex;
+    gap: 10px; // Ajusta según sea necesario
+  }
+  .video {
+    position: relative;
+    cursor: pointer;
+    right: 10%;
+  
+    &.expanded {
+      width: 100%; 
+    }
+  
+    .Player {
+      width: 70%; 
+      height: 70%;
+      margin-left: 10%;
+    }
+    .video-info{
+      margin-top: 10%;
+      
+      align-items: center;
+       h2{
+        margin-left: 10%;
+        font-size: 26px;
+        font-weight: bolder;
+       }
+       p{
+        margin-left: 10%;
+        font-size: 22px;
+       }
+    }
+  }
+}
+
+  .footer3 {
+    margin: 10px;
+    position:static;
+    bottom: 0;
+    width: 100%;
+    background-color:#024959;
+    height: 150px;
+    left: 30px;
+    text-align: center; 
+    
+  }
+.Ubicacion{
+  font-size: 13px;
+  margin: 10px 50px;
+  width: 50px;
+  height: 50px;
+}
+.ubicacion-icon {
+  margin-top: 40%;
+  width: 50px; 
+  height: 50px; 
+  
+}
+.texto-blanco {
+  color: white; 
+}
+.Telefono{
+  font-size: 14px;
+  color: white;
+  margin: -92px 70px;
+  
+} p {
+  font-size: 13px;
+  margin-top: 10px;
+  padding: 2px;
+  
+} a{
+  color: white;
+} 
+.Redes {
+  margin: -15px 50px;
+  color: white;
+
+  svg {
+    width: 35px;
+    height: 35px;
+    margin-right: 15px;  
+
+    path {
+      fill: white;  
+      stroke: black; 
+      stroke-width: 2;
+    }
+  }
+}
+.Telefono img {
+  width: 40px;
+  color: #0056b3;
+}
+
+.Politica{
+  margin: -70px 70px;
+  text-align: right;
+  color: white;
+}
+.Politica img{
+  margin: 0px 30px;
+}

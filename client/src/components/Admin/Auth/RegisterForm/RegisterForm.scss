@@ -1,0 +1,65 @@
+@import '~/src/scss/index.scss';
+
+.register-form {
+    font-family: Arial, sans-serif;
+
+    &__error {
+        font-family: Arial, sans-serif;
+
+        color: $error !important;
+        text-align: center;
+    }
+}
+
+.register-form input,
+.register-form textarea,
+.register-form select {
+    font-family: Arial, sans-serif;
+}
+.register-form {
+    max-width: 400px;
+    margin: 0 auto;
+  
+    .register-form__error {
+      color: red;
+      margin-top: 5px;
+    }
+  
+    .modal-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+  
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        text-align: center;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  
+        h6 {
+          margin-bottom: 15px;
+        }
+  
+        button {
+          margin-top: 15px;
+        }
+      }
+    }
+  }
+  .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px; // Ajusta la altura según tus necesidades
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  

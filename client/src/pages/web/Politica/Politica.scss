@@ -1,0 +1,35 @@
+.Box1 {
+    width: 100%;
+    p {
+      font-size: 14px;
+    }
+    ul {
+      font-size: 14px;
+    }
+    li {
+      font-size: 14px;
+    }
+  }
+  .Box2 {
+    border-bottom: 1px solid gray; 
+    padding-top: 5px;
+    margin-left: -30px;
+    
+  }
+  
+  .Tabs {
+    width: 1250px; 
+  
+    .MuiTab-root {
+      font-size: 12px; /* Tamaño de fuente deseado */
+      white-space: normal; /* Permite el retorno automático del texto */
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Máximo de 2 líneas */
+      -webkit-box-orient: vertical;
+      overflow: hidden; /* Oculta el contenido que desborda */
+      color: black;
+      font-weight: bold;
+    }
+    
+  }
+  

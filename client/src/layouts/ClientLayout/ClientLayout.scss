@@ -1,0 +1,56 @@
+.client-layout {
+    display: flex;
+    height: 100vh;
+  
+    &__left {
+      width: 200px;
+      background-color: #333;
+      color: white;
+      padding: 20px;
+  
+      ul {
+        list-style: none;
+        padding: 0;
+  
+        li {
+          margin-bottom: 10px;
+          cursor: pointer;
+  
+          svg {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  
+    &__right {
+      flex: 1;
+      padding: 20px;
+  
+      &-header {
+        height: 50px;
+        background-color: #ddd;
+      }
+  
+      &-content {
+        height: calc(100% - 50px);
+        overflow: auto;
+      }
+    }
+  }
+  
+  // Media query para pantallas más pequeñas
+  @media (max-width: 768px) {
+    .client-layout {
+      flex-direction: column;
+  
+      &__left {
+        width: 100%;
+      }
+  
+      &__right {
+        flex: initial;
+      }
+    }
+  }
+  
