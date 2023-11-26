@@ -9,7 +9,7 @@ const app = express();
 const authRoutes = require("./src/routes/auth");
 const userRoutes = require("./src/routes/user");
 const sliderRoutes = require("./src/routes/slider");
-const path = require('path');
+
 
 /* Trabajar con la extensión client-rest */
 app.use(bodyParser.json());

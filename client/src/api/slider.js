@@ -34,32 +34,34 @@ export class Sliders {
     }
   };
 
-  deleteSlider = async (data) => {
-    const url = `${this.baseApi}/${API_ROUTES.DELETE_SLIDER}`;
-    console.log(url);
-    const params = {
-      method: "DELETE",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": 'multipart/form-data',
-        Authorization: `Bearer ${accessToken}`,
-      },
-    };
-    console.log(params);
+  updateSlider = async (userId, userData) => {
+    console.log("Slider", userId);
+    const url = `${BASE_PATH}/${API_ROUTES.UPDATE_SLIDER}/${userId}`;
     try {
-      const response = await fetch(url, params);
+      const response = await fetch(url, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(userData), // Agrega el cuerpo de la solicitud con los datos actualizados
+      });
+
       if (!response.ok) {
-        throw new Error("Error en la solicitud: " + response.status);
+        throw new Error(`Error en la solicitud: ${response.status}`);
       }
+
       const result = await response.json();
+      console.log("Resultado de la actualización:", result);
       return result;
     } catch (error) {
-      console.error(error);
+      console.error("Error al actualizar usuario:", error.message);
       throw error;
     }
   };
+  
   updateSlider = async (sliderId, sliderData) => {
-    console.log("Slider ", sliderData);
+    console.log("Slider ", sliderId);
     const url = `${BASE_PATH}/${API_ROUTES.UPDATE_SLIDER}/${sliderId}`;
     try {
       const response = await fetch(url, {
@@ -68,7 +70,7 @@ export class Sliders {
           "Content-Type": "application/json",
           Authorization: `Bearer ${accessToken}`,
         },
-        body: JSON.stringify(sliderData),
+        body: JSON.stringify(sliderData), // Agrega el cuerpo de la solicitud con los datos actualizados
       });
 
       if (!response.ok) {

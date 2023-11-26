@@ -37,19 +37,22 @@ const deleteSlider = async (req, res) => {
 
 // Editar Slider
 const updateSlider = async (req, res) => {
-  
   try {
     const { id } = req.params;
     const sliderData = req.body;
     const existingSlider = await Slider.findById(id);
+
     if (!existingSlider) {
       return res.status(404).send({ msg: "Slider no encontrado" });
     }
-    console.log("Request Body:", req.body);  // Asegúrate de recibir los datos esperados
-    
-    await Slider.findByIdAndUpdate(id, sliderData);
 
-    const updatedSlider = await Slider.findById(id);
+    // Actualizar campos manualmente
+    existingSlider.title = sliderData.title;
+    existingSlider.images = sliderData.images;
+    existingSlider.active = sliderData.active;
+
+    // Guardar el documento actualizado
+    const updatedSlider = await existingSlider.save();
 
     res.status(200).send({ msg: "Actualización correcta", slider: updatedSlider });
   } catch (error) {
@@ -57,6 +60,7 @@ const updateSlider = async (req, res) => {
     res.status(500).send({ msg: "Error interno del servidor" });
   }
 };
+
 
 // buscar 1 Sliders
 const getSlider = async (req, res) => {

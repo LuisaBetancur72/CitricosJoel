@@ -1,56 +1,78 @@
+// ...
+
 .admin-layout {
-    display: flex;
-    height: 100vh;
-  
-    &__left {
-      width: 200px;
-      background-color: #333;
-      color: white;
-      padding: 20px;
-  
-      ul {
-        list-style: none;
-        padding: 0;
-  
-        li {
-          margin-bottom: 10px;
-          cursor: pointer;
-  
-          svg {
-            margin-right: 10px;
+  display: flex;
+  height: 100vh;
+
+  &__left {
+    width: 15%;
+    background-color: #333;
+    color: white;
+    padding: 20px;
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        margin-bottom: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center; // Centra los elementos verticalmente
+
+        svg {
+          margin-right: 10px;
+        }
+
+        span {
+          margin-right: 10px;
+          // Oculta el texto en pantallas pequeñas
+          @media (max-width: 768px) {
+            display: none;
           }
         }
       }
     }
-  
-    &__right {
-      flex: 1;
-      padding: 20px;
-  
-      &-header {
-        height: 50px;
-        background-color: #ddd;
-      }
-  
-      &-content {
-        height: calc(100% - 50px);
-        overflow: auto;
-      }
+  }
+
+  &__right {
+    flex: 1;
+    padding: 20px;
+
+    &-header {
+      height: 50px;
+      background-color: #ddd;
+    }
+
+    &-content {
+      height: calc(100% - 50px);
+      overflow: auto;
     }
   }
-  
+
+  .logomenu{
+    border-style: none;
+    width: 30%;
+    position: relative;
+    margin: 10px;
+  }
+
   // Media query para pantallas más pequeñas
   @media (max-width: 768px) {
     .admin-layout {
-      flex-direction: row;
-  
+      flex-direction: row; // Cambia a un diseño de columna en pantallas más pequeñas
+
       &__left {
-        width: 100%;
+        width: 20%;
       }
-  
+
       &__right {
-        flex: initial;
+        flex: 50%;
       }
+      
     }
   }
-  
+  .logomenu{
+    width: 100%;
+  }
+}

@@ -8,11 +8,13 @@ import { image } from "../../assets";
 import './AdminLayout.scss';
 import { Users } from '../../pages/admin/Users/Users';
 import { useAuth } from "../../hooks";
+import { FaBars } from "react-icons/fa";
 
 export const AdminLayout = (props) => {
   const { children } = props;
   const { logout } = useAuth();
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(true);
   
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -25,25 +27,36 @@ export const AdminLayout = (props) => {
     navigate('/');
   };
 
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="admin-layout">
+    <div className={`admin-layout ${isOpen ? 'sidebar-open' : 'sidebar-closed'}`}>
       <div className="admin-layout__left">
-        <img src={image.logo} alt="" className="logo" />
+        <img src={image.logo} alt="" className="logomenu" />
         <div>
-          <h1>Dashboard</h1>
+        <div className="bars" onClick={toggleSidebar}>
+            <FaBars />
+          </div>
           {/* Agrega iconos a los elementos del menú */}
           <ul>
-            <li onClick={() => handleOptionClick("Slider")} className={selectedOption === "Pedidos" ? "active" : ""}>
-              <MopedIcon /> Slider
+            <li onClick={() => handleOptionClick("Slider")} className={selectedOption === "Slider" ? "active" : ""}>
+             
+              <MopedIcon /> {isOpen && "Slider"}
             </li>
-            <li onClick={() => handleOptionClick("Productos")} className={selectedOption === "Pedidos" ? "active" : ""}>
-              <MopedIcon /> Productos
+            <li onClick={() => handleOptionClick("Productos")} className={selectedOption === "Productos" ? "active" : ""}>
+              
+              <MopedIcon /> {isOpen && "Productos"}
             </li>
             <li onClick={() => handleOptionClick("Usuarios")} className={selectedOption === "Usuarios" ? "active" : ""}>
-              <PeopleAltIcon /> Usuarios
+              
+              <PeopleAltIcon /> {isOpen && "Usuarios"}
             </li>
             <li onClick={() => handleOptionClick("BaseDeDatos")} className={selectedOption === "BaseDeDatos" ? "active" : ""}>
-              <FindInPageIcon/> Base de Datos
+           
+              <FindInPageIcon /> {isOpen && "Base de Datos"}
+
             </li>
           </ul>
           <ul>
@@ -51,8 +64,11 @@ export const AdminLayout = (props) => {
           </ul>
         </div>
       </div>
+      
       <div className="admin-layout__right">
-        <div className="admin-layout__right-header"></div>
+        <div className="admin-layout__right-header">
+        <h1>Dashboard</h1>
+        </div>
         <div className="admin-layout__right-content">
           {/* Pasa la opción seleccionada y el manejador de clics al componente User */}
           <Users selectedOption={selectedOption} handleOptionClick={handleOptionClick} />

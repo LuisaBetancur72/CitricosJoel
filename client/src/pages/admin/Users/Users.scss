@@ -1,122 +1,175 @@
+.Administrativos {
+  font-family: 'Arial', sans-serif;
+  
 
-.modalUser {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  max-width: 400px;
-  width: 100%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  > div {
-    margin-bottom: 20px; 
+  h2 {
+    color: #333;
+    margin-bottom: 10px;
+  }
 
-    &:last-child {
-      margin-bottom: 0; 
+  .Slider {
+    margin-top: 30px;
+    
+
+    h2 {
+      color: #474848;
+    }
+
+    .Box1 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 10px;
+      margin-right: 5px;
+
+      .Box2 {
+        width: 90%;
+        margin-bottom: 20px;
+
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        max-width: 500px;
+        margin: 0 auto;
+
+        th, td {
+          padding: 10px;
+          border: 1px solid #ddd;
+          text-align: left;
+        }
+
+        th {
+          background-color: #57595b;
+          color: #fff;
+        }
+
+        img {
+          max-width: 100px;
+          max-height: 100px;
+        }
+
+        .pagination {
+          margin-top: 10px;
+          
+          button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+            background-color: #495a6c;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+          }
+
+          span {
+            margin: 0 5px;
+          }
+        }
+      }
+  
+
+      Button {
+        margin-top: 10px;
+        background-color: #495a6c;
+        color: #fff;
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        border-radius: 3px;
+      }
     }
   }
-  p {
-    margin-bottom: 20px;
+
+  .Usuarios {
+    margin-top: 20px;
+
+    h1 {
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      max-width: 500px;
+      margin: 0 auto;
+
+      th, td {
+        padding: 10px;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      th {
+        background-color: #495a6c;
+        color: #fff;
+      }
+
+      .pagination {
+        margin-top: 10px;
+        
+        button {
+          padding: 5px 10px;
+          margin: 0 5px;
+          cursor: pointer;
+          background-color: #495a6c;
+          color: #fff;
+          border: none;
+          border-radius: 3px;
+        }
+
+        span {
+          margin: 0 5px;
+        }
+      }
+    }
+
+    Button {
+      margin-top: 10px;
+      background-color: #495a6c;
+      color: #fff;
+      padding: 10px;
+      cursor: pointer;
+      border: none;
+      border-radius: 3px;
+    }
   }
-  .button {
-    margin-right: 20px;
+  
+  // Consulta de medios para pantallas más pequeñas
+  @media (max-width: 768px) {
+    .Box1 {
+      .Box2 {
+        width: 100%;
+      }
+    }
+
+    table {
+      max-width: 100%;
+    }
   }
 }
 
-  .slider-form {
-    width: 80%;
-    margin: 38px auto;
-    padding: 20px;
-    background-color: #f5f5f5;
-}
-
-
-  .Box1 {
-    width: 100%;
-    p {
-      font-size: 14px;
-    }
-    ul {
-      font-size: 14px;
-    }
-    li {
-      font-size: 14px;
-    }
-  }
-  .Box2 {
-    border-bottom: 1px solid gray; 
-    padding-top: 5px;
-    margin-left: -30px;
-    
-  }
-  
-  .Tabs {
-    width: 1250px; 
-  
-    .MuiTab-root {
-      font-size: 12px; /* Tamaño de fuente deseado */
-      white-space: normal; /* Permite el retorno automático del texto */
-      display: -webkit-box;
-      -webkit-line-clamp: 2; /* Máximo de 2 líneas */
-      -webkit-box-orient: vertical;
-      overflow: hidden; /* Oculta el contenido que desborda */
-      color: black;
-      font-weight: bold;
-    }
-    
-  }
-  
-// Estilos básicos para la tabla
-.table-container {
-  max-width: 800px; // Ajusta el ancho según tus necesidades
+.slider-form {
+  width: 489px;
   margin: 0 auto;
+  padding: 20px;
+  background-color: #f5f5f5;
+  position: fixed;
 }
-
-.table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-}
-
-// Estilos para las celdas del encabezado
-th {
-  background-color: #f2f2f2;
-  border: 1px solid #dddddd;
+.Administrativos .Slider .Box1 Button {
+  margin-top: 10px;
+  background-color: #495a6c;
+  color: #fff;
   padding: 10px;
-  text-align: left;
+  cursor: pointer;
+  border: none;
+  border-radius: 3px;
+  margin-right: 5px;
 }
 
-// Estilos para las celdas del cuerpo
-td {
-  border: 1px solid #dddddd;
-  padding: 10px;
+@media (max-width: 768px) {
+  .Administrativos{
+  width: 245px;
 }
-
-// Estilos alternos para filas (opcional)
-tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-
-// Estilos para la paginación
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-
-  button {
-    margin: 0 5px;
-    padding: 8px;
-    cursor: pointer;
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-  }
-
-  span {
-    margin: 0 5px;
-    padding: 8px;
-  }
 }

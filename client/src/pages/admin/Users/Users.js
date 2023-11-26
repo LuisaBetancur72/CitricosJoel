@@ -53,7 +53,9 @@ export const Users = (props) => {
   const slidersInstance = new Sliders();
 
   const [sliderList, setSliderList] = useState([]);
-
+  const activeSlidersCount = sliderList.filter(
+    (slider) => slider.active
+  ).length;
 
   const getUsers = async () => {
     const url = `${BASE_PATH}/${API_ROUTES.GET_USERS}`;
@@ -154,7 +156,7 @@ export const Users = (props) => {
     const userToEdit = userList.find((user) => user._id === userId);
     console.log("Usuario", userId);
     setEditedUserData(userToEdit);
-    setShowEditModal(true); 
+    setShowEditModal(true);
   };
 
   const handleEditarSlider = (sliderId) => {
@@ -206,10 +208,13 @@ export const Users = (props) => {
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  
+
   const handleEdit = async () => {
     try {
-      await slidersInstance.updateSlider(editedSliderData?._id,editedSliderData);
+      await slidersInstance.updateSlider(
+        editedSliderData?._id,
+        editedSliderData
+      );
       fetchData();
       setShowEditSlider(false);
       setEditedSliderData(null);
@@ -258,11 +263,12 @@ export const Users = (props) => {
                       .map((slider) => (
                         <tr key={slider.Id}>
                           <td>{slider.title}</td>
-                          <td>{slider.images}</td>
+                          <td><img src={slider.images}/></td>
                           <td>{slider.active ? "Activo" : "Inactivo"}</td>
                           <td>
                             <Button
-                              onClick={() => handleEditarSlider(slider._id)}>
+                              onClick={() => handleEditarSlider(slider._id)}
+                            >
                               Editar
                             </Button>
                           </td>
@@ -270,6 +276,7 @@ export const Users = (props) => {
                       ))}
                   </tbody>
                 </table>
+
                 {/* Paginación */}
                 <div className="pagination">
                   <button
@@ -286,6 +293,22 @@ export const Users = (props) => {
                     {">"}
                   </button>
                 </div>
+                <Button
+                  onClick=
+                  {() => {
+                    if (activeSlidersCount === 6) {
+                      // Lógica para la publicación
+                      console.log("Publicando sliders...");
+                    } else if (activeSlidersCount < 6) {
+                      alert(
+                        "Debe haber al menos 6 sliders activos para publicar."
+                      );
+                    } else {
+                      alert("No se pueden publicar más de 6 sliders activos.");
+                    }
+                  }}
+                  > PUBLICAR
+                </Button>
               </div>
             </CustomTabPanel>
             <CustomTabPanel value={value} index={2}>
@@ -420,9 +443,12 @@ export const Users = (props) => {
           <h3>Editar Slider con ID: {editedUserData?.Id}</h3>
           <TextField
             label="Estado"
-            defaultValue={editedUserData?.active}
+            defaultValue={editedSliderData?.active.toString()}
             onChange={(e) =>
-              setEditedUserData({ ...editedUserData, active: e.target.value })
+              setEditedSliderData({
+                ...editedSliderData,
+                active: e.target.value,
+              })
             }
           />
           <Button onClick={handleEdit}>Guardar</Button>
