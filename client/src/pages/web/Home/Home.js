@@ -85,7 +85,8 @@ export const Home =()=>{
                 <div className="slideContainer" id="slideContainer">
                   <Slider {...settingsRTL} className="slider">
                     {Array.isArray(post) &&
-                    post.map((slider) => (
+                    post.filter((slider) => slider.active === true)
+                    .map((slider) => (
                     console.log('slider:', slider),
                       <Card key={slider._id}>
                         <CardMedia
@@ -94,7 +95,6 @@ export const Home =()=>{
                           src={slider.images}
                         />
                       </Card>
-                      
                     ))}
                   </Slider>
                 </div>
