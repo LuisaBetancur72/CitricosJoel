@@ -6,11 +6,11 @@ const { BASE_PATH, API_ROUTES } = ENV;
 const authInstance = new Auth();
 const accessToken = authInstance.getAccessToken();
 
-export class Sliders {
+export class Product {
   baseApi = BASE_PATH;
 
-  createSlider = async (formValues) => {
-    const url = `${this.baseApi}/${API_ROUTES.CREATE_SLIDER}`;
+  createProduct = async (formValues) => {
+    const url = `${this.baseApi}/${API_ROUTES.CREATE_PRODUCT}`;
     console.log(formValues);
     const params = {
       method: "POST",
@@ -34,9 +34,9 @@ export class Sliders {
     }
   };
 
-  updateSlider = async (sliderId, sliderData) => {
-    console.log("Slider ", sliderId);
-    const url = `${BASE_PATH}/${API_ROUTES.UPDATE_SLIDER}/${sliderId}`;
+    updateProduct = async (sliderId, sliderData) => {
+    console.log("Categoria  ", sliderId);
+    const url = `${BASE_PATH}/${API_ROUTES.UPDATE_PRODUCT}/${sliderId}`;
     try {
       const response = await fetch(url, {
         method: "PATCH",
@@ -60,8 +60,28 @@ export class Sliders {
     }
   };
 
-  getSlider = async (data) => {
-    const url = `${this.baseApi}/${API_ROUTES.GET_SLIDER}`;
+  getProductByCategoty = async (categoryName, categoryData) => {
+    console.log("Categoria  ", categoryName);
+    const url = `${BASE_PATH}/${API_ROUTES.GET_PRODUCTBY_CATEGORY}/${categoryName}`;
+    try {
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(categoryData), 
+      });
+      const result = await response.json();
+      return result;
+    } catch (error) {
+      console.error("Error al actualizar usuario:", error.message);
+      throw error;
+    }
+  };
+
+    getProduct = async (data) => {
+    const url = `${this.baseApi}/${API_ROUTES.GET_PRODUCT}`;
     console.log(url);
     const params = {
       method: "GET",
@@ -85,13 +105,15 @@ export class Sliders {
       throw error;
     }
   };
-  getSliders = async (data) => {
-    const url = `${this.baseApi}/${API_ROUTES.GET_SLIDERS}`;
+    getProducts = async (data) => {
+    const url = `${this.baseApi}/${API_ROUTES.GET_PRODUCTS}`;
     console.log(url);
     const params = {
       method: "GET",
       body: data,
       headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
       },
     };
     console.log(params);

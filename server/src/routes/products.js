@@ -14,7 +14,7 @@ if (!fs.existsSync(uploadDir)) {
 
 const md_upload = multiparty({ uploadDir: "./uploads/users/avatar" });
 const api = express.Router();
-
+api.get("/category/:name", [middleware_authentication.ensureAuth], ProductController.getAllProductsByCategory);
 api.get("/", [middleware_authentication.ensureAuth], ProductController.getAllProducts);
 api.get("/:id", [middleware_authentication.ensureAuth], ProductController.getProductById);
 api.post(

@@ -149,7 +149,6 @@
     }
   }
 }
-
 .slider-form {
   width: 489px;
   margin: 0 auto;
@@ -173,3 +172,143 @@
   width: 245px;
 }
 }
+.modalUser {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white; 
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 400px; 
+  width: 100%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); 
+  p {
+    margin-bottom: 20px;
+  }
+
+  button {
+    margin-right: 10px;
+  }
+}
+.Productos {
+  margin: 20px;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 16px;
+  }
+
+  .Box1 {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Box2 {
+    margin-bottom: 16px;
+
+    .Tabs {
+      background-color: #f0f0f0;
+    }
+  }
+
+  table {
+    width: 300px;
+    border-collapse: collapse;
+    margin-top: 16px;
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    th {
+      background-color: #f0f0f0;
+    }
+
+    tbody tr {
+      &:nth-child(even) {
+        background-color: #f9f9f9;
+      }
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+    td {
+      img {
+        max-width: 70px;  // Puedes ajustar este valor según el tamaño deseado
+        max-height: 700px; // Puedes ajustar este valor según el tamaño deseado
+        object-fit: cover; // Esto asegura que las imágenes mantengan su relación de aspecto
+        border-radius: 4px; // Un borde redondeado opcional
+      }
+    }
+  }
+
+  .pagination {
+    margin-top: 16px;
+
+    button {
+      cursor: pointer;
+      padding: 8px;
+      margin: 0 4px;
+      background-color: #3498db;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      outline: none;
+
+      &:disabled {
+        background-color: #bdc3c7;
+        cursor: not-allowed;
+      }
+    }
+
+    span {
+      margin: 0 8px;
+      font-weight: bold;
+    }
+  }
+
+  .status-button {
+    display: flex;
+    align-items: center;
+
+    &.active {
+      color: #27ae60;
+    }
+
+    &.inactive {
+      color: #e74c3c;
+    }
+
+    .MuiSwitch-colorSuccess.Mui-checked {
+      color: #27ae60;
+    }
+  }
+}
+// Estilos para el campo de búsqueda
+.TextField-root {
+  margin-bottom: 20px; // Espacio inferior para separar del contenido siguiente
+}
+
+// Estilos adicionales para personalizar el diseño del campo de búsqueda
+.TextField-input {
+  padding: 10px;
+  width: 300px
+ 
+}
+
+// Estilos para el botón de búsqueda (si decides agregar uno)
+.TextField-iconButton {
+  padding: 10px;
+  background-color: #f0f0f0; // Color de fondo del botón
+  border: 1px solid #ccc; // Borde del botón
+}
+
+// Estilos adicionales para resaltar el campo de búsqueda cuando está enfocado
+.TextField-root:focus-within {
+  border: 2px solid #1976d2; // Color de borde al estar enfocado
+}
+
+

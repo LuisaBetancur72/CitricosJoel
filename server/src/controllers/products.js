@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Product = require("../models/product");
 const Category = require("../models/category");
 
@@ -114,6 +113,35 @@ const updateProduct = async (req, res) => {
       res.status(500).send({ msg: "Error interno del servidor al obtener el producto por ID." });
     }
   };
+  const getAllProductsByCategory = async (req, res) => {
+    const categoryName = req.params.name;
+    console.log(req.params.categoryName)
+  
+    try {
+      console.log("Intentando obtener productos de la categoría con nombre:", categoryName);
+  
+      // Verificar si la categoría existe
+      const existingCategory = await Category.findOne({ name: categoryName });
+      if (!existingCategory) {
+        console.log("La categoría no existe.");
+        return res.status(404).send({ msg: "La categoría especificada no existe." });
+      }
+  
+      console.log("Categoría encontrada:", existingCategory);
+  
+      // Obtener todos los productos de la categoría
+      const products = await Product.find({ category: existingCategory._id });
+  
+      console.log("Productos encontrados:", products);
+  
+      res.status(200).send(products);
+    } catch (error) {
+      console.error("Error al obtener los productos por categoría:", error);
+      res.status(500).send({ msg: "Error interno del servidor al obtener los productos por categoría." });
+    }
+  };
+  
+  
     
 
 module.exports = {
@@ -121,5 +149,6 @@ module.exports = {
   updateProduct,
   deleteProduct,
   getAllProducts,
-  getProductById
+  getProductById,
+  getAllProductsByCategory
 };

@@ -2,13 +2,20 @@ import React, { useState, useEffect } from "react";
 import { ENV } from "../../../utils";
 import { Auth } from "../../../api";
 import { Sliders } from "../../../api";
+import { Product } from "../../../api";
 import { Modal, Button, TextField } from "@mui/material";
 import "./Users.scss";
 import { SliderForm } from "../../../components/Admin/Auth";
+import { CategoryForm } from "../../../components/Admin/Auth";
+import { ProductForm } from "../../../components/Admin/Auth";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Tabs from "@mui/material/Tabs";
+import Switch from "@mui/material/Switch";
+import TableCell from "@mui/material/TableCell";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from "@mui/icons-material/Search";
 
 const { BASE_PATH, API_ROUTES } = ENV;
 const authInstance = new Auth();
@@ -51,11 +58,15 @@ export const Users = (props) => {
   const indexOfLastUser = currentPage * usersPerPage;
   const indexOfFirstUser = indexOfLastUser - usersPerPage;
   const slidersInstance = new Sliders();
+  const productInstance = new Product();
+  const [searchValue, setSearchValue] = useState("");
 
   const [sliderList, setSliderList] = useState([]);
   const activeSlidersCount = sliderList.filter(
     (slider) => slider.active
   ).length;
+
+  const [productList, setProductList] = useState([]);
 
   const getUsers = async () => {
     const url = `${BASE_PATH}/${API_ROUTES.GET_USERS}`;
@@ -136,6 +147,15 @@ export const Users = (props) => {
       console.error("Error al obtener sliders:", error.message);
     }
   };
+  const fetchProduct = async () => {
+    try {
+      const productData = await productInstance.getProducts();
+      setProductList(productData);
+      console.log(productData);
+    } catch (error) {
+      console.error("Error al obtener Productos:", error.message);
+    }
+  };
   const fetchData = async () => {
     if (selectedOption === "Usuarios") {
       try {
@@ -144,8 +164,12 @@ export const Users = (props) => {
       } catch (error) {
         console.error("Error al obtener usuarios:", error.message);
       }
-    } else if (selectedOption === "Slider") {
+    }
+    if (selectedOption === "Slider") {
       fetchSliders();
+    }
+    if (selectedOption === "Productos") {
+      fetchProduct();
     }
   };
   useEffect(() => {
@@ -226,9 +250,21 @@ export const Users = (props) => {
     fetchData();
   }, [selectedOption]);
 
+  const categoriesList = [
+    { id: '6563d453597e7893ca26ff66', name: 'Primera' },
+    { id: '656401169b44a22e259d0115', name: 'Segunda' },
+    { id: '656401359b44a22e259d0117', name: 'Tercera' },
+    // Otros objetos de categorías...
+  ];
+
+  const getCategoryNameById = (categoryId) => {
+    const category = categoriesList.find((cat) => cat.id === categoryId);
+    return category ? category.name : 'Categoría Desconocida';
+  };
+
+
   return (
     <div className="Administrativos">
-      <h2>Admin</h2>
       {selectedOption === "Slider" && (
         <div className="Slider">
           <h2>Mis Slider</h2>
@@ -252,7 +288,7 @@ export const Users = (props) => {
                   <thead>
                     <tr>
                       <th>Title</th>
-                      <th>Dirección de Imagen</th>
+                      <th>Imagen</th>
                       <th>Estado</th>
                       <th>Acciones</th>
                     </tr>
@@ -263,7 +299,9 @@ export const Users = (props) => {
                       .map((slider) => (
                         <tr key={slider.Id}>
                           <td>{slider.title}</td>
-                          <td><img src={slider.images}/></td>
+                          <td>
+                            <img src={slider.images} />
+                          </td>
                           <td>{slider.active ? "Activo" : "Inactivo"}</td>
                           <td>
                             <Button
@@ -294,8 +332,7 @@ export const Users = (props) => {
                   </button>
                 </div>
                 <Button
-                  onClick=
-                  {() => {
+                  onClick={() => {
                     if (activeSlidersCount === 6) {
                       // Lógica para la publicación
                       console.log("Publicando sliders...");
@@ -307,7 +344,9 @@ export const Users = (props) => {
                       alert("No se pueden publicar más de 6 sliders activos.");
                     }
                   }}
-                  > PUBLICAR
+                >
+                  {" "}
+                  PUBLICAR
                 </Button>
               </div>
             </CustomTabPanel>
@@ -322,6 +361,139 @@ export const Users = (props) => {
       {selectedOption === "Productos" && (
         <div className="Productos">
           <h2>Mis Productos</h2>
+          <Box className="Box1">
+            <Box className="Box2">
+              <Tabs value={value} onChange={handleChange} className="Tabs">
+                <Tab label="CREAR CATEGORIA" />
+                <Tab label="CREAR PRODUCTO" />
+                <Tab label="PRODUCTOS" />
+              </Tabs>
+            </Box>
+            <CustomTabPanel value={value} index={0}>
+              <div>
+                <CategoryForm />
+              </div>
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={1}>
+              <div>
+                <h1>CREAR PRODUCTOS</h1>
+                <ProductForm />
+              </div>
+            </CustomTabPanel>
+            <CustomTabPanel value={value} index={2}>
+              <div>
+                <h1>PRODUCTOS</h1>
+                <TextField
+                  label="Buscar"
+                  value={searchValue}
+                  onChange={(e) => setSearchValue(e.target.value)}
+                  InputProps={{
+                    startAdornment: (
+                      <InputAdornment className="iconS">
+                        <SearchIcon />
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Imagenes</th>
+                      <th>Categoria</th>
+                      <th>Estado</th>
+                      <th>Disponible</th>
+                      <th>Agotado</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {productList
+                      .slice(indexOfFirstUser, indexOfLastUser)
+                      .map((product) => (
+                        <tr key={product.Id}>
+                          <td>{product.name}</td>
+                          <td>
+                            <img src={product.image1} />
+                            <img src={product.image2} />
+                            <img src={product.image3} />
+                          </td>
+                          <td>{getCategoryNameById(product.category)}</td>
+                          <td>
+                            <TableCell>
+                              <Switch
+                                checked={product.active}
+                                color="success"
+                                inputProps={{ "aria-label": "controlled" }}
+                                disabled
+                              />
+                            </TableCell>
+                            <TableCell
+                              className={`status-button ${
+                                product.active ? "active" : "inactive"
+                              }`}
+                            >
+                              {product.active ? "Activo" : "Inactivo"}
+                            </TableCell>
+                          </td>
+                          <td>
+                            <TableCell>
+                              <Switch
+                                checked={product.available}
+                                color="success"
+                                inputProps={{ "aria-label": "controlled" }}
+                                disabled
+                              />
+                            </TableCell>
+                            <TableCell
+                              className={`status-button ${
+                                product.available ? "active" : "inactive"
+                              }`}
+                            >
+                              {product.available ? "Activo" : "Inactivo"}
+                            </TableCell>
+                          </td>
+                          <td>
+                            <TableCell>
+                              <Switch
+                                checked={product.soldOut}
+                                color="success"
+                                inputProps={{ "aria-label": "controlled" }}
+                                disabled
+                              />
+                            </TableCell>
+                            <TableCell
+                              className={`status-button ${
+                                product.soldOut ? "active" : "inactive"
+                              }`}
+                            >
+                              {product.soldOut ? "Activo" : "Inactivo"}
+                            </TableCell>
+                          </td>
+                          <td></td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+
+                {/* Paginación */}
+                <div className="pagination">
+                  <button
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                  >
+                    {"<"}
+                  </button>
+                  <span>{currentPage}</span>
+                  <button
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={indexOfLastUser >= productList.length}
+                  >
+                    {">"}
+                  </button>
+                </div>
+              </div>
+            </CustomTabPanel>
+          </Box>
         </div>
       )}
 

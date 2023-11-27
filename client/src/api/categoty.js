@@ -6,11 +6,11 @@ const { BASE_PATH, API_ROUTES } = ENV;
 const authInstance = new Auth();
 const accessToken = authInstance.getAccessToken();
 
-export class Sliders {
+export class Category {
   baseApi = BASE_PATH;
 
-  createSlider = async (formValues) => {
-    const url = `${this.baseApi}/${API_ROUTES.CREATE_SLIDER}`;
+  createCategory = async (formValues) => {
+    const url = `${this.baseApi}/${API_ROUTES.CREATE_CATEGORY}`;
     console.log(formValues);
     const params = {
       method: "POST",
@@ -34,9 +34,9 @@ export class Sliders {
     }
   };
 
-  updateSlider = async (sliderId, sliderData) => {
-    console.log("Slider ", sliderId);
-    const url = `${BASE_PATH}/${API_ROUTES.UPDATE_SLIDER}/${sliderId}`;
+    updateCategoty = async (sliderId, sliderData) => {
+    console.log("Categoria  ", sliderId);
+    const url = `${BASE_PATH}/${API_ROUTES.UPDATE_CATEGORY}/${sliderId}`;
     try {
       const response = await fetch(url, {
         method: "PATCH",
@@ -60,8 +60,8 @@ export class Sliders {
     }
   };
 
-  getSlider = async (data) => {
-    const url = `${this.baseApi}/${API_ROUTES.GET_SLIDER}`;
+    getCategoty = async (data) => {
+    const url = `${this.baseApi}/${API_ROUTES.GET_CATEGORY}`;
     console.log(url);
     const params = {
       method: "GET",
@@ -85,8 +85,8 @@ export class Sliders {
       throw error;
     }
   };
-  getSliders = async (data) => {
-    const url = `${this.baseApi}/${API_ROUTES.GET_SLIDERS}`;
+    getCategotys = async (data) => {
+    const url = `${this.baseApi}/${API_ROUTES.GET_CATEGORYS}`;
     console.log(url);
     const params = {
       method: "GET",
